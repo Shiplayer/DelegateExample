@@ -1,15 +1,28 @@
-import io.reactivex.Observable
-import io.reactivex.subjects.PublishSubject
-import java.util.concurrent.TimeUnit
+import io.reactivex.subjects.BehaviorSubject
+import ui.MainActivity
 
 object Example {
     class Test(val test: String)
 
     @JvmStatic
     fun main(args: Array<String>) {
-        val linePublisher = PublishSubject.create<String>()
+        val test = ""
 
-        Thread{
+        val linePublisher = BehaviorSubject.create<String>()
+        linePublisher.onNext("Hello")
+
+        linePublisher.subscribe {
+            println(it)
+        }
+
+        linePublisher.onNext("After")
+
+        linePublisher.subscribe {
+            println("After: $it")
+        }
+
+        MainActivity().onCreate()
+        /*Thread{
             var line = ""
             do {
                 line = readLine() ?: "end"
@@ -26,11 +39,14 @@ object Example {
         }
 
         observable.repeatWhen {
-            linePublisher.doOnNext { println("OnNext $it") }
+//            it.flatMap {
+                linePublisher.doOnNext { println("OnNext $it") }
+//            }
         }.subscribe {
             println(it)
         }
 
+        */
         Thread.sleep(7000)
     }
 }

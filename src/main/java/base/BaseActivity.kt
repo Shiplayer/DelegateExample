@@ -1,23 +1,24 @@
 package base
 
 abstract class BaseActivity(){
-    fun onCreate(){
+
+    open fun onCreate(){
 
     }
 
-    fun onStart(){
+    open fun onStart(){
 
     }
 
-    fun onPause(){
+    open fun onPause(){
 
     }
 
-    fun onResume(){
+    open fun onResume(){
 
     }
 
-    fun onStop(){
+    open fun onStop(){
 
     }
 }
